@@ -10,11 +10,6 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 // URL base do site (deve ser configurada nas variáveis de ambiente do Vercel)
 const BASE_URL = process.env.PUBLIC_URL;
 
-// Para depuração
-console.log('API create-stripe-checkout carregada');
-console.log('BASE_URL:', BASE_URL ? 'configurado' : 'não configurado');
-console.log('STRIPE_KEY:', STRIPE_SECRET_KEY ? 'configurada' : 'não configurada');
-
 module.exports = async (req, res) => {
   // Configurar CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -35,10 +30,6 @@ module.exports = async (req, res) => {
 
   try {
     // Inicializar o Stripe com a chave secreta
-    if (!STRIPE_SECRET_KEY) {
-      throw new Error('STRIPE_SECRET_KEY não configurada nas variáveis de ambiente');
-    }
-    
     const stripeClient = stripe(STRIPE_SECRET_KEY);
     
     // Obter dados do corpo da requisição
@@ -72,8 +63,8 @@ module.exports = async (req, res) => {
         customer_name: payer.name,
         customer_email: payer.email
       },
-      success_url: `${BASE_URL || 'https://sitericijoo.vercel.app'}/confirmacao.html?session_id={CHECKOUT_SESSION_ID}&external_reference=${finalExternalReference}`,
-      cancel_url: `${BASE_URL || 'https://sitericijoo.vercel.app'}/carrinho.html?cancelled=true&external_reference=${finalExternalReference}`,
+      success_url: `${BASE_URL}/confirmacao.html?session_id={CHECKOUT_SESSION_ID}&external_reference=${finalExternalReference}`,
+      cancel_url: `${BASE_URL}/carrinho.html?cancelled=true&external_reference=${finalExternalReference}`,
     });
 
     // Retornar URL da sessão de checkout
