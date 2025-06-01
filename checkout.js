@@ -121,7 +121,7 @@ function iniciarPagamento() {
     }
     
     // Chamar a API do Stripe para criar uma sessão de checkout
-    fetch('/api/create_stripe_checkout', {
+    fetch('/api/create-stripe-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
