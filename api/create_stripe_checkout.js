@@ -72,8 +72,8 @@ module.exports = async (req, res) => {
         customer_name: payer.name,
         customer_email: payer.email
       },
-      success_url: `${BASE_URL || 'https://ricijopooo-1sjx.vercel.app'}/confirmacao.html?session_id={CHECKOUT_SESSION_ID}&external_reference=${finalExternalReference}`,
-      cancel_url: `${BASE_URL || 'https://ricijopooo-1sjx.vercel.app/'}/carrinho.html?cancelled=true&external_reference=${finalExternalReference}`,
+      success_url: `${BASE_URL || 'https://ricijopooo.vercel.app'}/confirmacao.html?session_id={CHECKOUT_SESSION_ID}&external_reference=${finalExternalReference}`,
+      cancel_url: `${BASE_URL || 'https://ricijopooo.vercel.app'}/carrinho.html?cancelled=true&external_reference=${finalExternalReference}`,
     });
 
     // Retornar URL da sessão de checkout
