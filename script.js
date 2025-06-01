@@ -714,7 +714,7 @@ function finalizarCompra() {
 
   // Obter a URL base atual
   const baseUrl = window.location.origin;
-  const apiUrl = `${baseUrl}/api/create_stripe_checkout`;
+  const apiUrl = `${baseUrl}/api/create-stripe-checkout`;
   
   console.log('Enviando requisição para:', apiUrl);
   
