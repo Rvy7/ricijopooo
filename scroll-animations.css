@@ -1,0 +1,66 @@
+/* Animações de Scroll para Ricijo Cheats */
+
+/* Classes base para elementos animados */
+.animate-on-scroll {
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+/* Animações de entrada */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+.slide-in-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(100px);
+}
+
+.slide-in-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.zoom-in.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.bounce-in {
+    opacity: 0;
+    transform: scale(0.3);
+}
+
+.bounce-in.active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Atrasos para criar efeito cascata */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }

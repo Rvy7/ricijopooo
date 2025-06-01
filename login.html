@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Ricijo Cheats</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .login-container {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, rgba(18, 18, 18, 0.95));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .login-container::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .login-form {
+            width: 100%;
+            max-width: 450px;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h2 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+        }
+        
+        .forgot-password {
+            display: block;
+            text-align: right;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+        
+        .forgot-password:hover {
+            color: var(--primary);
+        }
+        
+        .btn-login-form {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn-login-form:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(230, 57, 70, 0.4);
+        }
+        
+        .login-footer {
+            margin-top: 30px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .login-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        
+        .social-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--text-tertiary);
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .divider span {
+            padding: 0 15px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 576px) {
+            .login-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><span>Ricijo</span>Cheats</h1>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i>Início</a>
+                <a href="index.html#produtos"><i class="fas fa-gamepad"></i>Produtos</a>
+                <a href="index.html#como-funciona"><i class="fas fa-question-circle"></i>Como Funciona</a>
+                <a href="index.html#faq"><i class="fas fa-info-circle"></i>FAQ</a>
+            </nav>
+            <div class="botoes">
+                <a href="login.html" class="btn-login active">Login</a>
+                <a href="#" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="login-container">
+        <form class="login-form" id="loginForm">
+            <div class="login-header">
+                <h2>Bem-vindo de volta</h2>
+                <p>Entre na sua conta para acessar seus produtos</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" class="form-control" placeholder="Seu e-mail" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" class="form-control" placeholder="Sua senha" required>
+                </div>
+                <a href="#" class="forgot-password">Esqueceu a senha?</a>
+            </div>
+            
+            <div id="loginError" class="error-message" style="display: none; color: var(--primary); margin-bottom: 15px; text-align: center;"></div>
+            
+            <button type="submit" class="btn-login-form">Entrar</button>
+            
+            <div class="divider">
+                <span>ou continue com</span>
+            </div>
+            
+            <div class="social-login">
+                <a href="#" class="social-btn">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+            
+            <div class="login-footer">
+                Não tem uma conta? <a href="register.html">Registre-se</a>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Ricijo Cheats</h3>
+                    <p>Fornecemos os melhores cheats para os jogos mais populares do mercado, com preços acessíveis e suporte de qualidade.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="link-group">
+                        <h3>Links Rápidos</h3>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="index.html#produtos">Produtos</a></li>
+                            <li><a href="index.html#como-funciona">Como Funciona</a></li>
+                            <li><a href="index.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="link-group">
+                        <h3>Suporte</h3>
+                        <ul>
+                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Ricijo Cheats - 2023. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Script específico para a página de login
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animação para os campos de formulário
+            const formControls = document.querySelectorAll('.form-control');
+            
+            formControls.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-3px)';
+                    this.parentElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = '';
+                    this.parentElement.style.boxShadow = '';
+                });
+            });
+            
+            // Efeito de revelação para o formulário
+            const loginForm = document.querySelector('.login-form');
+            loginForm.style.opacity = '0';
+            loginForm.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                loginForm.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                loginForm.style.opacity = '1';
+                loginForm.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Verificar se o usuário já está logado
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+            if (usuarioLogado) {
+                window.location.href = 'index.html';
+            }
+            
+            // Processar o login
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const senha = document.getElementById('password').value;
+                const errorElement = document.getElementById('loginError');
+                
+                // Buscar usuários cadastrados
+                const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+                
+                // Verificar se o usuário existe
+                const usuario = usuarios.find(u => u.email === email);
+                
+                if (!usuario) {
+                    errorElement.textContent = 'Usuário não encontrado. Verifique seu e-mail.';
+                    errorElement.style.display = 'block';
+                    return;
+                }
+                
+                // Verificar se a senha está correta
+                if (usuario.senha !== senha) {
+                    errorElement.textContent = 'Senha incorreta. Por favor, tente novamente.';
+                    errorElement.style.display = 'block';
+                    return;
+                }
+                
+                // Login bem-sucedido
+                localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+                
+                // Verificar se há um redirecionamento na URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirect = urlParams.get('redirect');
+                
+                // Redirecionar com base no parâmetro da URL
+                if (redirect) {
+                    window.location.href = redirect + '.html';
+                } else {
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

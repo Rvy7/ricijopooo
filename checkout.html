@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Ricijo Cheats</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cupons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .checkout-container {
+            min-height: calc(100vh - 80px - 300px);
+            padding: 60px 0;
+        }
+        .checkout-resumo {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .resumo-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .resumo-item:last-child {
+            border-bottom: none;
+        }
+        .resumo-total {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Estilos para o desconto e preço original */
+        .desconto-item {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .valor-desconto {
+            color: #28a745;
+        }
+        
+        .preco-original {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .preco-com-desconto {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .checkout-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 12px;
+        }
+        .btn-back {
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid var(--text-tertiary);
+            color: var(--text-tertiary);
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-back:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
+        .btn-pagar {
+            padding: 12px 25px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 180px;
+            justify-content: center;
+        }
+        .btn-pagar:disabled {
+            background: rgba(230, 57, 70, 0.5);
+            cursor: not-allowed;
+        }
+        @media (max-width: 768px) {
+            .checkout-resumo, .checkout-buttons {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><span>Ricijo</span>Cheats</h1>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i>Início</a>
+                <a href="index.html#produtos"><i class="fas fa-gamepad"></i>Produtos</a>
+                <a href="index.html#como-funciona"><i class="fas fa-question-circle"></i>Como Funciona</a>
+                <a href="index.html#faq"><i class="fas fa-info-circle"></i>FAQ</a>
+            </nav>
+            <div class="botoes">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="carrinho.html" class="btn-carrinho"><i class="fas fa-shopping-cart"></i> Carrinho <span class="carrinho-contador">0</span></a>
+                <a href="#" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="checkout-container">
+        <div class="container">
+            <div class="checkout-content">
+                <h2 class="checkout-title">Finalizar Compra</h2>
+                <div class="checkout-section">
+                    <h3>Resumo do Pedido</h3>
+                    <div class="checkout-resumo">
+                        <div id="checkout-items">
+                            <!-- Os itens do carrinho serão inseridos aqui via JavaScript -->
+                        </div>
+                        <div class="resumo-item resumo-total">
+                            <span>Total</span>
+                            <span id="checkout-total">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-buttons">
+                    <a href="carrinho.html" class="btn-back">
+                        <i class="fas fa-arrow-left"></i> Voltar para o carrinho
+                    </a>
+                    <button id="btn-pagar" class="btn-pagar">
+                        <i class="fas fa-credit-card"></i> Pagar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Ricijo Cheats</h3>
+                    <p>Fornecemos os melhores cheats para os jogos mais populares do mercado, com preços acessíveis e suporte de qualidade.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="link-group">
+                        <h3>Links Rápidos</h3>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="index.html#produtos">Produtos</a></li>
+                            <li><a href="index.html#como-funciona">Como Funciona</a></li>
+                            <li><a href="index.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="link-group">
+                        <h3>Suporte</h3>
+                        <ul>
+                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Ricijo Cheats - 2023. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+/* Estilos para o sistema de cupons de desconto */
+
+.cupom-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+
+.cupom-container h3 {
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    font-size: 18px;
+}
+
+.cupom-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#cupom-input {
+    flex: 1;
+    padding: 12px 15px;
+    background: var(--bg-input);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+#cupom-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+}
+
+.btn-aplicar-cupom {
+    padding: 12px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-aplicar-cupom:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.cupom-mensagem {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.cupom-mensagem.erro {
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff6b6b;
+    border-left: 3px solid #ff6b6b;
+}
+
+.cupom-mensagem.sucesso {
+    background: rgba(0, 255, 0, 0.1);
+    color: #69db7c;
+    border-left: 3px solid #69db7c;
+}
+
+.desconto-linha {
+    color: #69db7c !important;
+    font-weight: 600;
+}
+
+.valor-desconto {
+    color: #69db7c !important;
+}
+
+/* Estilos para mostrar o preço original riscado e o novo preço */
+.total-com-desconto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.preco-original {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9em;
+    margin-bottom: 2px;
+}
+
+.desconto-aplicado {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.desconto-container {
+    color: #28a745;
+}
+
+/* Animação para destacar a mudança de preço */
+@keyframes destacar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.preco-destacado {
+    animation: destacar 0.5s ease-in-out;
+}
+
+/* Animação para quando o cupom é aplicado */
+@keyframes pulse-success {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.desconto-linha {
+    animation: pulse-success 0.5s ease;
+}

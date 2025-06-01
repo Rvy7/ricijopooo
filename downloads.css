@@ -1,0 +1,403 @@
+/* Estilos para a página de Downloads */
+
+/* Estilos gerais */
+.downloads-container {
+    padding: 40px 0;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.downloads-hero {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px 0;
+    color: #fff;
+}
+
+.downloads-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.downloads-hero p {
+    font-size: 1.2rem;
+    color: #aaa;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Seção de Downloads */
+.downloads-section {
+    margin-bottom: 60px;
+}
+
+.downloads-section h2 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.downloads-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Item de Download */
+.download-item {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.download-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(230, 57, 70, 0.3);
+}
+
+.download-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.download-info {
+    flex: 1;
+}
+
+.download-info h3 {
+    color: #fff;
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+}
+
+.download-info p {
+    color: #aaa;
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+}
+
+.download-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ddd;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.tag.version {
+    background: rgba(0, 123, 255, 0.2);
+    color: #4da3ff;
+}
+
+.tag.new {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.download-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.btn-download, .btn-tutorial {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-download {
+    background: #e63946;
+    color: white;
+    border: none;
+}
+
+.btn-download:hover {
+    background: #c1121f;
+    transform: translateY(-2px);
+}
+
+.btn-tutorial {
+    background: transparent;
+    color: #e63946;
+    border: 1px solid #e63946;
+}
+
+.btn-tutorial:hover {
+    background: rgba(230, 57, 70, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Seção de Tutoriais */
+.tutorials-section {
+    margin-bottom: 60px;
+}
+
+.tutorials-section h2 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.tutorial-card {
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(230, 57, 70, 0.3);
+}
+
+.tutorial-thumbnail {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+}
+
+.tutorial-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(230, 57, 70, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-button:hover {
+    background: #e63946;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.tutorial-info {
+    padding: 20px;
+}
+
+.tutorial-info h3 {
+    color: #fff;
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.tutorial-meta {
+    display: flex;
+    gap: 15px;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.tutorial-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Seção de Suporte */
+.support-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.support-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-radius: 10px;
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.support-card i {
+    font-size: 3rem;
+    color: #e63946;
+    margin-bottom: 15px;
+}
+
+.support-card h3 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+}
+
+.support-card p {
+    color: #aaa;
+    margin: 0 0 25px 0;
+    font-size: 1.1rem;
+}
+
+.btn-discord-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #7289da;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-discord-large:hover {
+    background: #5b6eae;
+    transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .download-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .download-actions {
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    .download-info {
+        text-align: center;
+    }
+    
+    .download-tags {
+        justify-content: center;
+    }
+    
+    .tutorials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilos para o footer */
+footer {
+    background: #0a0a0a;
+    color: #888;
+    padding: 40px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-logo h2 {
+    color: #fff;
+    margin: 0 0 10px 0;
+}
+
+.footer-links h3, .footer-contact h3 {
+    color: #fff;
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #e63946;
+}
+
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 10px 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+}

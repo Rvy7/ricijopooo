@@ -1,0 +1,13 @@
+{
+  "name": "ricijo-cheats",
+  "version": "1.0.0",
+  "description": "Site de venda de cheats para jogos",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "stripe": "^12.13.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

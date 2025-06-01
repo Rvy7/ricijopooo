@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos os Produtos - Ricijo Cheats</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="produtos.css">
+    <link rel="stylesheet" href="scroll-animations.css">
+    <link rel="stylesheet" href="cupons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><span>Ricijo</span>Cheats</h1>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i>Início</a>
+                <a href="#" class="active"><i class="fas fa-gamepad"></i>Produtos</a>
+                <a href="index.html#como-funciona"><i class="fas fa-question-circle"></i>Como Funciona</a>
+                <a href="index.html#faq"><i class="fas fa-info-circle"></i>FAQ</a>
+            </nav>
+            <div class="botoes">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="carrinho.html" class="btn-carrinho"><i class="fas fa-shopping-cart"></i> Carrinho <span class="carrinho-contador">0</span></a>
+                <a href="https://discord.gg/yWJHz4MVWJ" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="produtos-hero">
+        <div class="container">
+            <h1 class="animate-on-scroll fade-in">Todos os Produtos</h1>
+            <p class="animate-on-scroll fade-in delay-200">Conheça nossa linha completa de cheats para os melhores jogos</p>
+            
+            <div class="filtros animate-on-scroll fade-in delay-300">
+                <div class="filtro-categoria">
+                    <label>Categoria:</label>
+                    <select id="filtro-categoria">
+                        <option value="todos">Todos</option>
+                        <option value="fps">FPS</option>
+                        <option value="battle-royale">Battle Royale</option>
+                        <option value="mmorpg">MMORPG</option>
+                        <option value="contas">Contas</option>
+                    </select>
+                </div>
+                
+                <div class="filtro-preco">
+                    <label>Preço:</label>
+                    <select id="filtro-preco">
+                        <option value="todos">Todos</option>
+                        <option value="gratuito">Gratuito</option>
+                        <option value="ate-50">Até R$ 50</option>
+                        <option value="50-100">R$ 50 - R$ 100</option>
+                        <option value="100-mais">Acima de R$ 100</option>
+                    </select>
+                </div>
+                
+                <div class="filtro-busca">
+                    <input type="text" id="busca" placeholder="Buscar produto...">
+                    <button id="btn-buscar"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="todos-produtos">
+        <div class="container">
+            <div class="categoria-header animate-on-scroll fade-in">
+                <h2>Produtos em Destaque</h2>
+            </div>
+            
+            <div class="produtos-grid animate-on-scroll fade-in delay-200">
+                <!-- Produtos em Destaque -->
+                <div class="produto destaque" data-id="1" data-categoria="fps" data-nome="Hack PointBlank Brasil" data-descricao="O melhor hack para PointBlank Brasil com recursos avançados como aimbot, wallhack, e anti-detecção. Atualizado regularmente para garantir máxima segurança." data-preco-semanal="27.30" data-preco-mensal="79.90" data-preco-vitalicio="299.90">
+                    <div class="produto-img">
+                        <img src="img/produto1.jpg" alt="Hack PointBlank Brasil">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Hack PointBlank Brasil</h3>
+                        <p class="preco">A partir de <span>R$ 27,30</span></p>
+                        <p class="periodo">PBBR - (10 dias)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto destaque novo" data-id="2" data-categoria="fps" data-nome="Point Blank BR (Privado)" data-descricao="Versão privada e exclusiva do nosso hack para PointBlank BR. Desenvolvido para um número limitado de usuários, garantindo menor chance de detecção e recursos premium." data-preco-semanal="100.30" data-preco-mensal="280.00" data-preco-vitalicio="799.90">
+                    <div class="produto-img">
+                        <img src="img/produto2.jpg" alt="Point Blank BR (Privado)">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Point Blank BR (Privado)</h3>
+                        <p class="preco">A partir de <span>R$ 100,30</span></p>
+                        <p class="periodo">Build Privada - (30 dias)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto destaque" data-id="5" data-categoria="fps" data-nome="Valorant Esp + Aim" data-descricao="Cheat completo para Valorant com ESP (wallhack) e aimbot ajustável. Sistema anti-detecção avançado e atualizações constantes para acompanhar as mudanças do jogo." data-preco-semanal="49.90" data-preco-mensal="129.90" data-preco-vitalicio="499.90">
+                    <div class="produto-img">
+                        <img src="img/produto5.jpg" alt="Valorant Esp + Aim">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Valorant Esp + Aim</h3>
+                        <p class="preco">A partir de <span>R$ 49,90</span></p>
+                        <p class="periodo">Valorant Full - (3 dias)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto destaque novo" data-id="6" data-categoria="fps" data-nome="CS2 Esp + Aim" data-descricao="Cheat premium para Counter-Strike 2 com ESP e aimbot de alta precisão. Desenvolvido para ser indetectável pelo VAC e com configurações personalizáveis para cada situação de jogo." data-preco-semanal="30.00" data-preco-mensal="85.00" data-preco-vitalicio="350.00">
+                    <div class="produto-img">
+                        <img src="img/produto6.jpg" alt="CS2 Esp + Aim">
+                    </div>
+                    <div class="produto-content">
+                        <h3>CS2 Esp + Aim</h3>
+                        <p class="preco">A partir de <span>R$ 30,00</span></p>
+                        <p class="periodo">CS2 - (Semanal)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+            </div>
+            
+            <div class="categoria-header animate-on-scroll fade-in">
+                <h2>FPS</h2>
+            </div>
+            
+            <div class="produtos-grid animate-on-scroll fade-in delay-200">
+                <!-- Produtos FPS -->
+                <div class="produto" data-id="7" data-categoria="fps" data-nome="Rainbow Six Siege Hack" data-descricao="Cheat completo para Rainbow Six Siege com ESP, aimbot, recoil control e muito mais. Desenvolvido para ser indetectável e oferecer vantagem competitiva." data-preco-semanal="35.90" data-preco-mensal="99.90" data-preco-vitalicio="399.90">
+                    <div class="produto-img">
+                        <img src="img/produto7.jpg" alt="Rainbow Six Siege Hack">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Rainbow Six Siege Hack</h3>
+                        <p class="preco">A partir de <span>R$ 35,90</span></p>
+                        <p class="periodo">R6 - (Semanal)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto" data-id="8" data-categoria="fps" data-nome="Overwatch 2 Hack" data-descricao="Cheat para Overwatch 2 com aimbot preciso, ESP para ver inimigos através de paredes, e recursos avançados de customização para cada herói." data-preco-semanal="40.00" data-preco-mensal="110.00" data-preco-vitalicio="450.00">
+                    <div class="produto-img">
+                        <img src="img/produto8.jpg" alt="Overwatch 2 Hack">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Overwatch 2 Hack</h3>
+                        <p class="preco">A partir de <span>R$ 40,00</span></p>
+                        <p class="periodo">OW2 - (Semanal)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto gratuito" data-id="9" data-categoria="fps" data-nome="Aim Trainer" data-descricao="Software gratuito para treinar sua mira em jogos FPS. Inclui vários modos de treinamento e análises detalhadas para melhorar seu desempenho." data-preco-semanal="0" data-preco-mensal="0" data-preco-vitalicio="0">
+                    <div class="produto-img">
+                        <img src="img/produto9.jpg" alt="Aim Trainer">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Aim Trainer</h3>
+                        <p class="preco"><span>GRATUITO</span></p>
+                        <p class="periodo">Software de Treinamento</p>
+                    </div>
+                    <a href="downloads/aim_trainer.zip" class="btn-download">Baixar Agora</a>
+                </div>
+            </div>
+            
+            <div class="categoria-header animate-on-scroll fade-in">
+                <h2>Battle Royale</h2>
+            </div>
+            
+            <div class="produtos-grid animate-on-scroll fade-in delay-200">
+                <!-- Produtos Battle Royale -->
+                <div class="produto" data-id="10" data-categoria="battle-royale" data-nome="Fortnite Hack" data-descricao="Cheat para Fortnite com aimbot, ESP, speedhack e outros recursos avançados. Atualizado constantemente para acompanhar as atualizações do jogo." data-preco-semanal="45.00" data-preco-mensal="120.00" data-preco-vitalicio="480.00">
+                    <div class="produto-img">
+                        <img src="img/produto10.jpg" alt="Fortnite Hack">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Fortnite Hack</h3>
+                        <p class="preco">A partir de <span>R$ 45,00</span></p>
+                        <p class="periodo">Fortnite - (Semanal)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto novo" data-id="11" data-categoria="battle-royale" data-nome="Apex Legends Hack" data-descricao="Cheat premium para Apex Legends com aimbot, ESP, item ESP, e muitas outras funcionalidades. Desenvolvido para ser indetectável pelo Easy Anti-Cheat." data-preco-semanal="38.00" data-preco-mensal="105.00" data-preco-vitalicio="420.00">
+                    <div class="produto-img">
+                        <img src="img/produto11.jpg" alt="Apex Legends Hack">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Apex Legends Hack</h3>
+                        <p class="preco">A partir de <span>R$ 38,00</span></p>
+                        <p class="periodo">Apex - (Semanal)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto" data-id="12" data-categoria="battle-royale" data-nome="PUBG Hack" data-descricao="Cheat completo para PUBG com aimbot, ESP, no recoil, e muitos outros recursos. Atualizado regularmente para garantir segurança e eficiência." data-preco-semanal="42.00" data-preco-mensal="115.00" data-preco-vitalicio="460.00">
+                    <div class="produto-img">
+                        <img src="img/produto12.jpg" alt="PUBG Hack">
+                    </div>
+                    <div class="produto-content">
+                        <h3>PUBG Hack</h3>
+                        <p class="preco">A partir de <span>R$ 42,00</span></p>
+                        <p class="periodo">PUBG - (Semanal)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto gratuito" data-id="13" data-categoria="battle-royale" data-nome="Battle Royale Radar" data-descricao="Ferramenta gratuita que mostra a localização de itens importantes em mapas de jogos Battle Royale. Compatível com vários jogos populares." data-preco-semanal="0" data-preco-mensal="0" data-preco-vitalicio="0">
+                    <div class="produto-img">
+                        <img src="img/produto13.jpg" alt="Battle Royale Radar">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Battle Royale Radar</h3>
+                        <p class="preco"><span>GRATUITO</span></p>
+                        <p class="periodo">Ferramenta de Mapa</p>
+                    </div>
+                    <a href="downloads/battle_royale_radar.zip" class="btn-download">Baixar Agora</a>
+                </div>
+            </div>
+            
+            <div class="categoria-header animate-on-scroll fade-in">
+                <h2>MMORPG</h2>
+            </div>
+            
+            <div class="produtos-grid animate-on-scroll fade-in delay-200">
+                <!-- Produtos MMORPG -->
+                <div class="produto" data-id="14" data-categoria="mmorpg" data-nome="World of Warcraft Bot" data-descricao="Bot avançado para World of Warcraft que automatiza farming, leveling, dungeons e muitas outras tarefas. Personalizável e fácil de usar." data-preco-semanal="35.00" data-preco-mensal="95.00" data-preco-vitalicio="380.00">
+                    <div class="produto-img">
+                        <img src="img/produto14.jpg" alt="World of Warcraft Bot">
+                    </div>
+                    <div class="produto-content">
+                        <h3>World of Warcraft Bot</h3>
+                        <p class="preco">A partir de <span>R$ 35,00</span></p>
+                        <p class="periodo">WoW - (Semanal)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto" data-id="15" data-categoria="mmorpg" data-nome="Final Fantasy XIV Bot" data-descricao="Bot completo para Final Fantasy XIV que automatiza coleta, crafting, combate e outras atividades. Discreto e com baixo risco de detecção." data-preco-semanal="32.00" data-preco-mensal="90.00" data-preco-vitalicio="360.00">
+                    <div class="produto-img">
+                        <img src="img/produto15.jpg" alt="Final Fantasy XIV Bot">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Final Fantasy XIV Bot</h3>
+                        <p class="preco">A partir de <span>R$ 32,00</span></p>
+                        <p class="periodo">FFXIV - (Semanal)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+            </div>
+            
+            <div class="categoria-header animate-on-scroll fade-in">
+                <h2>Contas</h2>
+            </div>
+            
+            <div class="produtos-grid animate-on-scroll fade-in delay-200">
+                <!-- Produtos Contas -->
+                <div class="produto" data-id="3" data-categoria="contas" data-nome="Contas NFA - PBBR" data-descricao="Contas NFA (Non-Full Access) para PointBlank BR com patente General 1 estrela. Ideal para quem quer começar a jogar com uma conta já evoluída." data-preco-semanal="130.00" data-preco-mensal="130.00" data-preco-vitalicio="130.00">
+                    <div class="produto-img">
+                        <img src="img/produto3.jpg" alt="Contas NFA - PBBR">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Contas NFA - PBBR</h3>
+                        <p class="preco">A partir de <span>R$ 130,00</span></p>
+                        <p class="periodo">Conta NFA-General (1star)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto" data-id="16" data-categoria="contas" data-nome="Contas Steam com Jogos" data-descricao="Contas Steam com diversos jogos populares. Diferentes opções disponíveis, desde contas básicas até contas premium com muitos jogos." data-preco-semanal="50.00" data-preco-mensal="50.00" data-preco-vitalicio="50.00">
+                    <div class="produto-img">
+                        <img src="img/produto16.jpg" alt="Contas Steam com Jogos">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Contas Steam com Jogos</h3>
+                        <p class="preco">A partir de <span>R$ 50,00</span></p>
+                        <p class="periodo">Conta Steam Básica</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto" data-id="17" data-categoria="contas" data-nome="Contas Valorant Ranqueadas" data-descricao="Contas Valorant com diferentes ranks, desde Bronze até Imortal. Ideal para jogadores que querem pular o processo de subir de rank." data-preco-semanal="80.00" data-preco-mensal="80.00" data-preco-vitalicio="80.00">
+                    <div class="produto-img">
+                        <img src="img/produto17.jpg" alt="Contas Valorant Ranqueadas">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Contas Valorant Ranqueadas</h3>
+                        <p class="preco">A partir de <span>R$ 80,00</span></p>
+                        <p class="periodo">Conta Platina</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+            </div>
+            
+            <div class="categoria-header animate-on-scroll fade-in">
+                <h2>Utilitários</h2>
+            </div>
+            
+            <div class="produtos-grid animate-on-scroll fade-in delay-200">
+                <!-- Produtos Utilitários -->
+                <div class="produto" data-id="4" data-categoria="utilitarios" data-nome="MultClient + Menu PBBR" data-descricao="Ferramenta que permite abrir múltiplas instâncias do PointBlank BR em um único computador. Inclui menu de configuração avançado para personalizar sua experiência." data-preco-semanal="35.00" data-preco-mensal="90.00" data-preco-vitalicio="250.00">
+                    <div class="produto-img">
+                        <img src="img/produto4.jpg" alt="MultClient + Menu PBBR">
+                    </div>
+                    <div class="produto-content">
+                        <h3>MultClient + Menu PBBR</h3>
+                        <p class="preco">A partir de <span>R$ 35,00</span></p>
+                        <p class="periodo">MultClient - (7 dias)</p>
+                    </div>
+                    <a href="#" class="btn-ver-mais">Ver detalhes</a>
+                </div>
+                
+                <div class="produto gratuito" data-id="18" data-categoria="utilitarios" data-nome="FPS Booster" data-descricao="Ferramenta gratuita que otimiza seu computador para obter o máximo desempenho em jogos. Inclui configurações para diversos jogos populares." data-preco-semanal="0" data-preco-mensal="0" data-preco-vitalicio="0">
+                    <div class="produto-img">
+                        <img src="img/produto18.jpg" alt="FPS Booster">
+                    </div>
+                    <div class="produto-content">
+                        <h3>FPS Booster</h3>
+                        <p class="preco"><span>GRATUITO</span></p>
+                        <p class="periodo">Otimizador de Desempenho</p>
+                    </div>
+                    <a href="downloads/fps_booster.zip" class="btn-download">Baixar Agora</a>
+                </div>
+                
+                <div class="produto gratuito" data-id="19" data-categoria="utilitarios" data-nome="Game Recorder" data-descricao="Software gratuito para gravar suas partidas com mínimo impacto no desempenho. Ideal para criar vídeos e compartilhar suas melhores jogadas." data-preco-semanal="0" data-preco-mensal="0" data-preco-vitalicio="0">
+                    <div class="produto-img">
+                        <img src="img/produto19.jpg" alt="Game Recorder">
+                    </div>
+                    <div class="produto-content">
+                        <h3>Game Recorder</h3>
+                        <p class="preco"><span>GRATUITO</span></p>
+                        <p class="periodo">Software de Gravação</p>
+                    </div>
+                    <a href="downloads/game_recorder.zip" class="btn-download">Baixar Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Detalhes do Produto -->
+    <div id="produto-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-produto-nome">Nome do Produto</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-produto-img">
+                    <img id="modal-produto-img" src="" alt="Imagem do Produto">
+                </div>
+                <div class="modal-produto-info">
+                    <h3>Descrição</h3>
+                    <p id="modal-produto-descricao">Descrição do produto</p>
+                    
+                    <h3>Escolha seu plano</h3>
+                    <div class="planos-container">
+                        <div class="plano" data-plano="semanal">
+                            <h4>1 Dia</h4>
+                            <p class="plano-preco">R$ <span id="preco-semanal">0,00</span></p>
+                            <ul class="plano-features">
+                                <li>Acesso por 1 dia</li>
+                                <li>Suporte básico</li>
+                                <li>Atualizações incluídas</li>
+                            </ul>
+                            <button class="btn-comprar">Comprar Agora</button> 
+                        </div>
+                        
+                        <div class="plano destaque" data-plano="mensal">
+                            <div class="plano-badge">Mais Popular</div>
+                            <h4>1 Semana</h4>
+                            <p class="plano-preco">R$ <span id="preco-mensal">0,00</span></p>
+                            <ul class="plano-features">
+                                <li>Acesso por 7 dias</li>
+                                <li>Suporte prioritário</li>
+                                <li>Atualizações incluídas</li>
+                                <li>Desconto em relação ao diário</li>
+                            </ul>
+                            <button class="btn-comprar">Comprar Agora</button>
+                        </div>
+                        
+                        <div class="plano" data-plano="vitalicio">
+                            <h4>1 Mês</h4>
+                            <p class="plano-preco">R$ <span id="preco-vitalicio">0,00</span></p>
+                            <ul class="plano-features">
+                                <li>Acesso por 30 dias</li>
+                                <li>Suporte VIP</li>
+                                <li>Atualizações durante o período</li>
+                                <li>Melhor custo-benefício</li>
+                            </ul>
+                            <button class="btn-comprar">Comprar Agora</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Ricijo<span>Cheats</span></h3>
+                    <p>Oferecendo os melhores cheats para jogos desde 2020. Qualidade, segurança e suporte de primeira linha.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="link-group">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="#">Produtos</a></li>
+                        <li><a href="index.html#como-funciona">Como Funciona</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="link-group">
+                    <h3>Suporte</h3>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                
+                <div class="link-group">
+                    <h3>Conta</h3>
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Registrar</a></li>
+                        <li><a href="dashboard.html">Minha Conta</a></li>
+                        <li><a href="#">Histórico de Compras</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ricijo Cheats. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Garantir que o script.js foi carregado antes de inicializar o produtos.js
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar o contador do carrinho
+            if (typeof atualizarContadorCarrinho === 'function') {
+                atualizarContadorCarrinho();
+            }
+            
+            // Adicionar estilo para o botão de download
+            const style = document.createElement('style');
+            style.textContent = `
+                .btn-download {
+                    display: inline-block;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    transition: all 0.3s ease;
+                }
+                .btn-download:hover {
+                    background-color: #45a049;
+                    transform: translateY(-3px);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+    <script src="produtos.js"></script>
+    <script src="scroll-animations.js"></script>
+    <script src="cupons.js"></script>
+</body>
+</html>
