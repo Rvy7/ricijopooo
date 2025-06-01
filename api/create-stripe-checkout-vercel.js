@@ -1,6 +1,6 @@
 /**
  * API para criar uma sessão de checkout no Stripe
- * Substitui a funcionalidade do create_checkout.js do MercadoPago
+ * Versão otimizada para o Vercel
  */
 const stripe = require('stripe');
 
@@ -8,7 +8,7 @@ const stripe = require('stripe');
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 
 // URL base do site (deve ser configurada nas variáveis de ambiente do Vercel)
-const BASE_URL = process.env.PUBLIC_URL;
+const BASE_URL = process.env.PUBLIC_URL || 'https://ricijopooo-1sjx.vercel.app';
 
 module.exports = async (req, res) => {
   // Configurar CORS
@@ -17,23 +17,45 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
   
+  // Responder a requisições OPTIONS (pré-voo CORS)
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
   
-  // Verificar método
-  if (req.method !== "POST") {
-    res.status(405).json({ error: "Method not allowed" });
+  // Verificar método - permitir GET para teste
+  if (req.method === 'GET') {
+    res.status(200).json({
+      status: 'API funcionando',
+      message: 'Esta API requer uma solicitação POST para criar uma sessão de checkout'
+    });
+    return;
+  }
+  
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'Method not allowed' });
     return;
   }
 
   try {
     // Inicializar o Stripe com a chave secreta
+    if (!STRIPE_SECRET_KEY) {
+      console.error('STRIPE_SECRET_KEY não configurada nas variáveis de ambiente');
+      throw new Error('STRIPE_SECRET_KEY não configurada nas variáveis de ambiente');
+    }
+    
     const stripeClient = stripe(STRIPE_SECRET_KEY);
     
     // Obter dados do corpo da requisição
     const { items, payer, external_reference } = req.body;
+    
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      throw new Error('Itens inválidos ou não fornecidos');
+    }
+    
+    if (!payer || !payer.email) {
+      throw new Error('Informações do pagador inválidas ou não fornecidas');
+    }
     
     // Garantir que temos uma referência externa válida
     const finalExternalReference = external_reference || `RICIJO-${Date.now()}`;
@@ -60,7 +82,7 @@ module.exports = async (req, res) => {
       customer_email: payer.email,
       metadata: {
         external_reference: finalExternalReference,
-        customer_name: payer.name,
+        customer_name: payer.name || 'Cliente',
         customer_email: payer.email
       },
       success_url: `${BASE_URL}/confirmacao.html?session_id={CHECKOUT_SESSION_ID}&external_reference=${finalExternalReference}`,
@@ -75,9 +97,11 @@ module.exports = async (req, res) => {
     });
   } catch (error) {
     console.error('Erro ao criar checkout no Stripe:', error);
+    
     res.status(500).json({
       error: "Erro ao criar checkout",
-      details: error.message
+      details: error.message,
+      timestamp: new Date().toISOString()
     });
   }
 };
