@@ -1,0 +1,4 @@
+# Arquivos e pastas a serem ignorados pelo Vercel
+node_modules/.cache
+.git
+.env.local
