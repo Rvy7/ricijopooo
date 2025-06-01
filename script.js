@@ -729,22 +729,35 @@ function finalizarCompra() {
     })
   })
   .then(response => {
-    if (!response.ok) {
-      throw new Error(`Erro HTTP: ${response.status}`);
-    }
-    return response.json();
+    console.log('Status da resposta:', response.status);
+    return response.text().then(text => {
+      try {
+        // Tenta converter para JSON
+        const data = JSON.parse(text);
+        console.log('Resposta completa:', data);
+        if (!response.ok) {
+          throw new Error(`Erro HTTP: ${response.status} - ${data.error || data.details || text}`);
+        }
+        return data;
+      } catch (e) {
+        console.error('Erro ao analisar JSON:', e);
+        console.log('Resposta bruta:', text);
+        throw new Error(`Erro ao processar resposta: ${text}`);
+      }
+    });
   })
   .then(data => {
     if (data.init_point) {
       console.log('Redirecionando para o Stripe:', data);
       window.location.href = data.init_point; // Redireciona para o Stripe
     } else {
+      console.error('Resposta sem init_point:', data);
       alert('Erro ao iniciar pagamento. Tente novamente.');
     }
   })
-  .catch((error) => {
-    console.error('Erro de comunicação com servidor:', error);
-    alert(`Erro de comunicação com servidor: ${error.message}. Tente novamente mais tarde.`);
+  .catch(error => {
+    console.error('Erro na requisição:', error);
+    alert(`Erro ao tentar iniciar o pagamento: ${error.message}`);
   });
 }
 

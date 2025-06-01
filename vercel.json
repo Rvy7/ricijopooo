@@ -9,9 +9,14 @@
     { "src": "img/**", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/create-stripe-checkout", "dest": "/api/create-stripe-checkout.js" },
-    { "src": "/api/create_stripe_checkout", "dest": "/api/create_stripe_checkout.js" },
+    { "src": "/api/create-stripe-checkout", "dest": "/api/create-stripe-checkout-vercel.js" },
+    { "src": "/api/create_stripe_checkout", "dest": "/api/create-stripe-checkout-vercel.js" },
+    { "src": "/api/check-stripe-payment", "dest": "/api/check_stripe_payment.js" },
+    { "src": "/api/webhook-stripe", "dest": "/api/webhook_stripe.js" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/(.*)", "dest": "/$1" }
-  ]
+  ],
+  "env": {
+    "PUBLIC_URL": "https://ricijopooo-1sjx.vercel.app"
+  }
 }
