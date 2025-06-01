@@ -7,7 +7,7 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 const STRIPE_PUBLIC_KEY = process.env.STRIPE_PUBLIC_KEY;
 
 // URL base do site (deve ser configurada nas variáveis de ambiente do Vercel)
-const BASE_URL = process.env.PUBLIC_URL || 'https://sitericijoo.vercel.app';
+const BASE_URL = process.env.PUBLIC_URL || 'https://ricijopooo-1sjx.vercel.app/';
 
 module.exports = {
     STRIPE_SECRET_KEY,
