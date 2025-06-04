@@ -334,8 +334,8 @@ function inicializarVisaoGeral() {
             });
         
         // Se for vitalício, mostrar "∞" em vez de um número
-        if (diasPorProduto.includes(36500)) { // ~100 anos
-            diasRestantes = "∞";
+        if (diasPorProduto.includes(30)) { // ~1 mes
+            diasRestantes = "30";
         } else {
             // Calcular média de dias restantes
             diasRestantes = Math.round(diasPorProduto.reduce((a, b) => a + b, 0) / diasPorProduto.length);
@@ -444,7 +444,7 @@ function carregarProdutosUsuario() {
         let tempoRestante;
         if (dataExpiracao.getFullYear() > hoje.getFullYear() + 50) {
             // Se a data de expiração for muito distante, considerar como vitalício
-            tempoRestante = 'Vitalício';
+            tempoRestante = '30';
         } else if (isActive) {
             const diffTime = Math.abs(dataExpiracao - hoje);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
