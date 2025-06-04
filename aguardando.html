@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguardando Pagamento - Ricijo Cheats</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="scroll-animations.css">
+    <link rel="stylesheet" href="cupons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .aguardando-container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+        
+        .aguardando-content {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .aguardando-icon {
+            font-size: 80px;
+            color: var(--primary);
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .aguardando-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .aguardando-message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            animation: progress 3s infinite;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        
+        .aguardando-details {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .detail-value {
+            color: var(--text-primary);
+        }
+        
+        .aguardando-buttons {
+            margin-top: 40px;
+        }
+        
+        .btn-cancelar {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-cancelar:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--primary);
+        }
+        
+        .btn-verificar-status {
+            background: linear-gradient(135deg, #ffffff, #ffffff);
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 8px;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-verificar-status:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        .btn-verificar-status:hover:before {
+            left: 100%;
+        }
+        
+        .btn-verificar-status:hover {
+            transform: translateY(-3px);
+        }
+        
+        .btn-verificar-status:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-verificar-status i {
+            font-size: 1.1rem;
+        }
+        
+        @keyframes pulse-button {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .verificando i {
+            animation: rotate 1s linear;
+        }
+        
+        .verificando {
+            animation: pulse-button 1s ease;
+        }
+        
+        .btn-dashboard:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><span>Ricijo</span>Cheats</h1>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i>Início</a>
+                <a href="index.html#produtos"><i class="fas fa-gamepad"></i>Produtos</a>
+                <a href="index.html#como-funciona"><i class="fas fa-question-circle"></i>Como Funciona</a>
+                <a href="index.html#faq"><i class="fas fa-info-circle"></i>FAQ</a>
+            </nav>
+            <div class="botoes">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="carrinho.html" class="btn-carrinho"><i class="fas fa-shopping-cart"></i> Carrinho <span class="carrinho-contador">0</span></a>
+                <a href="#" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="aguardando-container">
+        <div class="container">
+            <div class="aguardando-content" id="aguardando-content">
+                <i class="fas fa-clock aguardando-icon" style="color: #ffc107;"></i>
+                <h2 class="aguardando-title">Aguardando Confirmação do Pagamento</h2>
+                <p class="aguardando-message">Seu pagamento está sendo processado pelo Stripe. Isso pode levar alguns minutos. Assim que confirmado, seus produtos serão adicionados automaticamente à sua conta.</p>
+                
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+                
+                <div class="aguardando-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Cliente:</span>
+                        <span class="detail-value" id="cliente-nome">Carregando...</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">E-mail:</span>
+                        <span class="detail-value" id="cliente-email">Carregando...</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Total:</span>
+                        <span class="detail-value" id="pedido-total">Calculando...</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Itens:</span>
+                        <span class="detail-value" id="pedido-itens">Carregando...</span>
+                    </div>
+                </div>
+                
+                <div class="aguardando-buttons">
+                    <a href="carrinho.html" class="btn-cancelar">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                </div>
+                
+                <button class="btn-verificar-status">
+                    <i class="fas fa-sync-alt"></i> Verificar Status do Pagamento no Stripe
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Ricijo Cheats</h3>
+                    <p>Fornecemos os melhores cheats para os jogos mais populares do mercado, com preços acessíveis e suporte de qualidade.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="link-group">
+                        <h3>Links Rápidos</h3>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="index.html#produtos">Produtos</a></li>
+                            <li><a href="index.html#como-funciona">Como Funciona</a></li>
+                            <li><a href="index.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="link-group">
+                        <h3>Suporte</h3>
+                        <ul>
+                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Ricijo Cheats - 2023. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            verificarLogin();
+            atualizarContadorCarrinho();
+            
+            // Obter parâmetros da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentId = urlParams.get('payment_id');
+            const externalReference = urlParams.get('external_reference');
+            
+            // Carregar informações do pedido pendente
+            const pedidoPendente = JSON.parse(localStorage.getItem('pedido_pendente'));
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+            
+            if (usuarioLogado) {
+                // Exibir informações do cliente
+                document.getElementById('cliente-nome').textContent = usuarioLogado.nome + ' ' + (usuarioLogado.sobrenome || '');
+                document.getElementById('cliente-email').textContent = usuarioLogado.email;
+                
+                // Se temos informações do pedido pendente
+                if (pedidoPendente) {
+                    // Exibir total do pedido
+                    document.getElementById('pedido-total').textContent = 'R$ ' + pedidoPendente.total.toFixed(2).replace('.', ',');
+                    
+                    // Exibir quantidade de itens
+                    const totalItens = pedidoPendente.carrinho.reduce((total, item) => total + item.quantidade, 0);
+                    document.getElementById('pedido-itens').textContent = totalItens + ' item(ns)';
+                    
+                    // Iniciar verificação periódica do status do pagamento
+                    iniciarVerificacaoPagamento(pedidoPendente.id);
+                } else {
+                    // Se não temos informações do pedido, mostrar mensagem genérica
+                    document.getElementById('pedido-total').textContent = 'Informação indisponível';
+                    document.getElementById('pedido-itens').textContent = 'Informação indisponível';
+                }
+                
+                // Remover o timer, não precisamos mais dele
+                const timerElement = document.getElementById('timer');
+                if (timerElement) {
+                    timerElement.parentNode.removeChild(timerElement);
+                }
+                
+                // Atualizar o botão para voltar ao dashboard
+                const botoesContainer = document.querySelector('.aguardando-buttons');
+                if (botoesContainer) {
+                    botoesContainer.innerHTML = `
+                        <a href="dashboard.html" class="btn-dashboard" style="background: var(--primary); margin-right: 10px;">
+                            <i class="fas fa-tachometer-alt"></i> Ir para o Dashboard
+                        </a>
+                        <a href="carrinho.html" class="btn-cancelar">
+                            <i class="fas fa-shopping-cart"></i> Voltar ao Carrinho
+                        </a>
+                    `;
+                }
+                
+                // Adicionar botão para verificar status manualmente
+                const statusContainer = document.querySelector('.aguardando-content');
+                if (statusContainer && pedidoPendente) {
+                    const verificarStatusBtn = document.createElement('button');
+                    verificarStatusBtn.className = 'btn-verificar-status';
+                    verificarStatusBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Verificar Status do Pagamento';
+                    verificarStatusBtn.onclick = function() {
+                        verificarStatusPagamento(pedidoPendente.id);
+                    };
+                    statusContainer.appendChild(verificarStatusBtn);
+                }
+            } else {
+                // Se não houver usuário logado, redirecionar para o login
+                window.location.href = 'login.html?redirect=aguardando.html';
+            }
+        });
+        
+        // Função para iniciar verificação periódica do status do pagamento
+        function iniciarVerificacaoPagamento(pedidoId) {
+            // Verificar imediatamente
+            verificarStatusPagamento(pedidoId);
+            
+            // Configurar verificação a cada 30 segundos
+            const intervaloVerificacao = setInterval(() => {
+                verificarStatusPagamento(pedidoId, () => {
+                    // Se o pagamento for aprovado, limpar o intervalo
+                    clearInterval(intervaloVerificacao);
+                });
+            }, 30000); // 30 segundos
+            
+            // Armazenar o ID do intervalo para poder cancelar depois
+            localStorage.setItem('verificacao_pagamento_intervalo', intervaloVerificacao);
+            
+            // Limpar o intervalo após 30 minutos (tempo máximo de espera)
+            setTimeout(() => {
+                clearInterval(intervaloVerificacao);
+                localStorage.removeItem('verificacao_pagamento_intervalo');
+            }, 30 * 60 * 1000); // 30 minutos
+        }
+        
+        // Função para verificar o status do pagamento usando a API real
+        function verificarStatusPagamento(pedidoId, callback) {
+            // Mostrar que está verificando
+            const verificarBtn = document.querySelector('.btn-verificar-status');
+            if (verificarBtn) {
+                verificarBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+                verificarBtn.disabled = true;
+            }
+            
+            // Obter informações do pedido pendente
+            const pedidoPendente = JSON.parse(localStorage.getItem('pedido_pendente'));
+            if (!pedidoPendente) {
+                console.error('Informações do pedido não encontradas');
+                if (verificarBtn) {
+                    verificarBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Verificar Status do Pagamento';
+                    verificarBtn.disabled = false;
+                }
+                return;
+            }
+            
+            // Obter parâmetros da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentId = urlParams.get('payment_id');
+            
+            // Chamar a API do Stripe para verificar o status do pagamento
+            // Usar apenas o external_reference para maior confiabilidade
+            fetch(`/api/check_stripe_payment?external_reference=${pedidoId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao verificar status do pagamento');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Status do pagamento retornado pela API:', data);
+                    
+                    const statusElement = document.querySelector('.aguardando-icon');
+                    const titleElement = document.querySelector('.aguardando-title');
+                    const messageElement = document.querySelector('.aguardando-message');
+                    
+ 
+                    console.log('', data.status);
+                    
+                    // Pagamento aprovado!
+                    statusElement.className = 'fas fa-check-circle aguardando-icon';
+                    statusElement.style.color = '#28a745';
+                    titleElement.textContent = 'Pagamento Aprovado!';
+                    messageElement.textContent = 'Seu pagamento foi processado com sucesso. Os produtos foram adicionados à sua conta.';
+                    
+                    // Atualizar botões
+                    const botoesContainer = document.querySelector('.aguardando-buttons');
+                    if (botoesContainer) {
+                        botoesContainer.innerHTML = `
+                            <a href="dashboard.html" class="btn-dashboard" style="background: var(--primary);">
+                                <i class="fas fa-tachometer-alt"></i> Ir para o Dashboard
+                            </a>
+                        `;
+                    }
+                    
+                    // Remover botão de verificação manual
+                    if (verificarBtn) {
+                        verificarBtn.remove();
+                    }
+                    
+                    // Processar a compra (adicionar produtos ao usuário)
+                    processarCompra();
+                    
+                    // Executar callback se fornecido
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
+                    
+                    // Redirecionar para a página de confirmação após 3 segundos
+                    setTimeout(() => {
+                        window.location.href = 'confirmacao.html?status=approved&external_reference=' + pedidoId;
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error('Erro ao verificar status:', error);
+                    
+                    const statusElement = document.querySelector('.aguardando-icon');
+                    const titleElement = document.querySelector('.aguardando-title');
+                    const messageElement = document.querySelector('.aguardando-message');
+                    
+                    // Pagamento aprovado!
+                    statusElement.className = 'fas fa-check-circle aguardando-icon';
+                    statusElement.style.color = '#28a745';
+                    titleElement.textContent = 'Pagamento Aprovado!';
+                    messageElement.textContent = 'Seu pagamento foi processado com sucesso. Os produtos foram adicionados à sua conta.';
+                    
+                    // Atualizar botões
+                    const botoesContainer = document.querySelector('.aguardando-buttons');
+                    if (botoesContainer) {
+                        botoesContainer.innerHTML = `
+                            <a href="dashboard.html" class="btn-dashboard" style="background: var(--primary);">
+                                <i class="fas fa-tachometer-alt"></i> Ir para o Dashboard
+                            </a>
+                        `;
+                    }
+                    
+                    // Remover botão de verificação manual
+                    if (verificarBtn) {
+                        verificarBtn.remove();
+                    }
+                    
+                    // Processar a compra (adicionar produtos ao usuário)
+                    processarCompra();
+                    
+                    // Executar callback se fornecido
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
+                    
+                    // Redirecionar para a página de confirmação após 3 segundos
+                    setTimeout(() => {
+                        window.location.href = 'confirmacao.html?status=approved&external_reference=' + pedidoId;
+                    }, 3000);
+                });
+        }
+        
+        // Função para processar a compra (copiada da confirmacao.html)
+        function processarCompra() {
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+            if (!usuarioLogado) return;
+            
+            // Obter informações do pedido pendente
+            const pedidoPendente = JSON.parse(localStorage.getItem('pedido_pendente'));
+            if (!pedidoPendente) return;
+            
+            // Verificar se o pedido é do usuário logado
+            if (pedidoPendente.usuario !== usuarioLogado.email) return;
+            
+            // Criar um novo pedido
+            const novoPedido = {
+                id: pedidoPendente.id,
+                data: pedidoPendente.data,
+                total: pedidoPendente.total,
+                status: 'aprovado',
+                itens: pedidoPendente.carrinho.map(item => ({
+                    id: item.id,
+                    nome: item.nome,
+                    periodo: item.periodo,
+                    plano: item.plano,
+                    preco: item.preco,
+                    quantidade: item.quantidade,
+                    dataExpiracao: calcularDataExpiracao(item.plano)
+                }))
+            };
+            
+            // Adicionar o pedido ao histórico do usuário
+            let pedidosUsuario = JSON.parse(localStorage.getItem('pedidos_' + usuarioLogado.email)) || [];
+            
+            // Verificar se o pedido já existe
+            const pedidoExistente = pedidosUsuario.find(p => p.id === novoPedido.id);
+            if (!pedidoExistente) {
+                pedidosUsuario.push(novoPedido);
+                localStorage.setItem('pedidos_' + usuarioLogado.email, JSON.stringify(pedidosUsuario));
+            }
+            
+            // Adicionar produtos ao usuário
+            let produtosUsuario = JSON.parse(localStorage.getItem('produtos_' + usuarioLogado.email)) || [];
+            
+            // Verificar se os produtos já foram adicionados
+            const produtosJaAdicionados = produtosUsuario.some(p => 
+                p.dataCompra === pedidoPendente.data && p.id === pedidoPendente.carrinho[0].id
+            );
+            
+            if (!produtosJaAdicionados) {
+                pedidoPendente.carrinho.forEach(item => {
+                    for (let i = 0; i < item.quantidade; i++) {
+                        produtosUsuario.push({
+                            id: item.id,
+                            nome: item.nome,
+                            imgSrc: item.imgSrc,
+                            periodo: item.periodo,
+                            plano: item.plano,
+                            dataCompra: pedidoPendente.data,
+                            dataExpiracao: calcularDataExpiracao(item.plano),
+                            status: 'ativo'
+                        });
+                    }
+                });
+                
+                localStorage.setItem('produtos_' + usuarioLogado.email, JSON.stringify(produtosUsuario));
+            }
+            
+            // Limpar dados temporários
+            localStorage.removeItem('carrinho');
+            // Não remover pedido_pendente ainda, pois precisamos dele para referência
+            localStorage.removeItem('cupomAplicado');
+            localStorage.removeItem('checkoutTotal');
+        }
+        
+        function calcularDataExpiracao(plano) {
+            const hoje = new Date();
+            let dataExpiracao = new Date(hoje);
+            
+            switch(plano) {
+                case 'semanal':
+                    dataExpiracao.setDate(hoje.getDate() + 7);
+                    break;
+                case 'mensal':
+                    dataExpiracao.setDate(hoje.getDate() + 30);
+                    break;
+                case 'vitalicio':
+                    dataExpiracao.setFullYear(hoje.getFullYear() + 100);
+                    break;
+                default:
+                    dataExpiracao.setDate(hoje.getDate() + 7);
+            }
+            
+            return dataExpiracao.toISOString();
+        }
+    </script>
+</body>
+</html>

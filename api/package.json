@@ -1,0 +1,12 @@
+{
+  "name": "ricijo-api",
+  "version": "1.0.0",
+  "description": "API functions for Ricijo Cheats",
+  "private": true,
+  "dependencies": {
+    "stripe": "^12.13.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

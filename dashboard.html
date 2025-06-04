@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Ricijo Cheats</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><span>Ricijo</span>Cheats</h1>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i>Início</a>
+                <a href="index.html#produtos"><i class="fas fa-gamepad"></i>Produtos</a>
+                <a href="index.html#como-funciona"><i class="fas fa-question-circle"></i>Como Funciona</a>
+                <a href="index.html#faq"><i class="fas fa-info-circle"></i>FAQ</a>
+            </nav>
+            <div class="botoes">
+                <!-- O botão de login será substituído pelo script.js -->
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="carrinho.html" class="btn-carrinho"><i class="fas fa-shopping-cart"></i> Carrinho <span class="carrinho-contador">0</span></a>
+                <a href="#" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- Alert Banner for Key Redemption -->
+        <div class="key-redemption-banner" id="keyRedemptionBanner">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <i class="fas fa-key"></i>
+                    <span>Para resgatar sua KEY, abra um ticket no Discord</span>
+                    <div class="info-tooltip">
+                        <i class="fas fa-question-circle"></i>
+                        <div class="tooltip-content">
+                            <div class="tooltip-step"><span>1.</span> Acesse nosso servidor do Discord</div>
+                            <div class="tooltip-step"><span>2.</span> Abra um ticket na categoria de suporte</div>
+                            <div class="tooltip-step"><span>3.</span> Envie o comprovante de pagamento</div>
+                            <div class="tooltip-step"><span>4.</span> Aguarde a liberação da sua KEY</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="banner-close" id="closeBanner">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Dashboard</h2>
+                <p>Gerencie sua conta e seus produtos</p>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Sidebar de navegação -->
+                <div class="dashboard-sidebar">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-info">
+                            <h3 id="sidebar-username">Carregando...</h3>
+                            <p id="sidebar-email">Carregando...</p>
+                        </div>
+                    </div>
+
+                    <nav class="dashboard-nav" role="tablist">
+                        <a href="#" id="tab-overview" class="active" data-section="overview" role="tab" aria-selected="true"><i class="fas fa-tachometer-alt"></i> Visão Geral</a>
+                        <a href="#" id="tab-profile" data-section="profile" role="tab" aria-selected="false"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                        <a href="#" id="tab-products" data-section="products" role="tab" aria-selected="false"><i class="fas fa-gamepad"></i> Meus Produtos</a>
+                        <a href="#" id="tab-settings" data-section="settings" role="tab" aria-selected="false"><i class="fas fa-cog"></i> Configurações</a>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </nav>
+                </div>
+
+                <!-- Conteúdo principal do dashboard -->
+                <div class="dashboard-main" role="tabpanel">
+                    <!-- Seção de visão geral -->
+                    <section id="overview" class="dashboard-section active" role="tabpanel" aria-labelledby="tab-overview">
+                        <h3>Visão Geral</h3>
+                        <div class="overview-cards">
+                            <div class="overview-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h4>Produtos Ativos</h4>
+                                    <p class="card-value">0</p>
+                                </div>
+                            </div>
+
+                            <div class="overview-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h4>Dias Restantes</h4>
+                                    <p class="card-value">0</p>
+                                </div>
+                            </div>
+
+                            <div class="overview-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h4>Downloads</h4>
+                                    <p class="card-value">0</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="recent-activity">
+                            <h3>Atividade Recente</h3>
+                            <div class="activity-list">
+                                <p class="empty-state">Nenhuma atividade recente</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Seção de edição de perfil -->
+                    <section id="profile" class="dashboard-section" role="tabpanel" aria-labelledby="tab-profile">
+                        <h3>Editar Perfil</h3>
+                        <form id="profile-form" class="dashboard-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="profile-nome">Nome</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="profile-nome" class="form-control" placeholder="Seu nome">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profile-sobrenome">Sobrenome</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="profile-sobrenome" class="form-control" placeholder="Seu sobrenome">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profile-email">E-mail</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="profile-email" class="form-control" placeholder="Seu e-mail" readonly>
+                                    <small class="form-text">O e-mail não pode ser alterado.</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profile-discord">ID do Discord</label>
+                                <div class="input-with-icon">
+                                    <i class="fab fa-discord"></i>
+                                    <input type="text" id="profile-discord" class="form-control" placeholder="Seu ID do Discord (ex: usuario#1234)">
+                                </div>
+                            </div>
+                            
+                            <div class="form-divider">
+                                <span>Alterar Senha</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profile-senha-atual">Senha Atual</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="profile-senha-atual" class="form-control" placeholder="Sua senha atual">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="profile-nova-senha">Nova Senha</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="profile-nova-senha" class="form-control" placeholder="Nova senha">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profile-confirmar-senha">Confirmar Nova Senha</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="profile-confirmar-senha" class="form-control" placeholder="Confirme sua nova senha">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="password-requirements">
+                                <p>Sua senha deve conter:</p>
+                                <ul>
+                                    <li id="req-length">Pelo menos 8 caracteres</li>
+                                    <li id="req-uppercase">Uma letra maiúscula</li>
+                                    <li id="req-number">Um número</li>
+                                    <li id="req-special">Um caractere especial</li>
+                                </ul>
+                            </div>
+                            
+                            <div id="profile-message" class="form-message"></div>
+                            
+                            <div class="form-buttons">
+                                <button type="submit" class="btn-primary">Salvar Alterações</button>
+                            </div>
+                        </form>
+                    </section>
+                    
+                    <!-- Seção de produtos -->
+                    <section id="products" class="dashboard-section" role="tabpanel" aria-labelledby="tab-products">
+                        <h3>Meus Produtos</h3>
+                        
+                        <div class="product-filters">
+                            <div class="filter-group">
+                                <label>Filtrar por:</label>
+                                <select id="product-filter" class="form-control">
+                                    <option value="all">Todos</option>
+                                    <option value="active">Ativos</option>
+                                    <option value="expired">Expirados</option>
+                                </select>
+                            </div>
+                            
+                            <div class="search-group">
+                                <div class="input-with-icon">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="product-search" class="form-control" placeholder="Buscar produto...">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="products-list">
+                            <!-- Produtos de exemplo (serão substituídos dinamicamente) -->
+                            <div class="product-card active">
+                                <div class="product-image">
+                                    <img src="img/produto1.jpg" alt="Hack PointBlank Brasil">
+                                    <span class="product-status">Ativo</span>
+                                </div>
+                                <div class="product-details">
+                                    <h4>Hack PointBlank Brasil</h4>
+                                    <p class="product-type">PBBR - (10 dias)</p>
+                                    <div class="product-expiry">
+                                        <i class="fas fa-clock"></i> Expira em: <span>7 dias</span>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                                    <a href="#" class="btn-details">Detalhes</a>
+                                </div>
+                            </div>
+                            
+                            <div class="product-card expired">
+                                <div class="product-image">
+                                    <img src="img/produto5.jpg" alt="Valorant Esp + Aim">
+                                    <span class="product-status">Expirado</span>
+                                </div>
+                                <div class="product-details">
+                                    <h4>Valorant Esp + Aim</h4>
+                                    <p class="product-type">Valorant Full - (3 dias)</p>
+                                    <div class="product-expiry">
+                                        <i class="fas fa-clock"></i> Expirou em: <span>10/04/2023</span>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="btn-renew"><i class="fas fa-sync"></i> Renovar</a>
+                                    <a href="#" class="btn-details">Detalhes</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Mensagem de nenhum produto -->
+                            <p class="empty-state" style="display: none;">Você não possui nenhum produto.</p>
+                        </div>
+                    </section>
+
+                    <!-- Seção de configurações -->
+                    <section id="settings" class="dashboard-section" role="tabpanel" aria-labelledby="tab-settings">
+                        <h3>Configurações</h3>
+                        
+                        <div class="settings-group">
+                            <h4>Preferências de Notificação</h4>
+                            
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>E-mails de Atualização</h5>
+                                    <p>Receber e-mails sobre atualizações de produtos</p>
+                                </div>
+                                <div class="setting-control">
+                                    <label class="switch">
+                                        <input type="checkbox" id="email-updates" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>Alertas de Expiração</h5>
+                                    <p>Receber alertas quando seus produtos estiverem próximos de expirar</p>
+                                </div>
+                                <div class="setting-control">
+                                    <label class="switch">
+                                        <input type="checkbox" id="expiry-alerts" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>Promoções e Ofertas</h5>
+                                    <p>Receber informações sobre promoções e novos produtos</p>
+                                </div>
+                                <div class="setting-control">
+                                    <label class="switch">
+                                        <input type="checkbox" id="promotions">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-group danger-zone">
+                            <h4>Zona de Perigo</h4>
+                            
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>Excluir Conta</h5>
+                                    <p>Esta ação não pode ser desfeita. Todos os seus dados serão removidos permanentemente.</p>
+                                </div>
+                                <div class="setting-control">
+                                    <button id="delete-account" class="btn-danger">Excluir Conta</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="settings-message" class="form-message"></div>
+                        
+                        <div class="form-buttons">
+                            <button id="save-settings" class="btn-primary">Salvar Configurações</button>
+                        </div>
+                    </section>
+
+                    <!-- Outras seções serão adicionadas depois -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Ricijo Cheats</h3>
+                    <p>Fornecemos os melhores cheats para os jogos mais populares do mercado, com preços acessíveis e suporte de qualidade.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="link-group">
+                        <h3>Links Rápidos</h3>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="index.html#produtos">Produtos</a></li>
+                            <li><a href="index.html#como-funciona">Como Funciona</a></li>
+                            <li><a href="index.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="link-group">
+                        <h3>Suporte</h3>
+                        <ul>
+                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Ricijo Cheats - 2023. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Key Redemption Banner Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const banner = document.getElementById('keyRedemptionBanner');
+            const closeButton = document.getElementById('closeBanner');
+            
+            // Always show the banner on page load
+            banner.style.display = 'block';
+            
+            // Close banner
+            closeButton.addEventListener('click', function() {
+                banner.style.animation = 'slideUp 0.5s ease-out';
+                
+                // Add slideUp animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideUp {
+                        from { transform: translateY(0); opacity: 1; }
+                        to { transform: translateY(-100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Hide after animation completes
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                }, 450);
+            });
+            
+            // Make Discord button open in a new tab
+            const discordBtn = document.querySelector('.btn-discord');
+            if (discordBtn) {
+                discordBtn.setAttribute('target', '_blank');
+                discordBtn.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+    </script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

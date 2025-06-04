@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Ricijo Cheats</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="scroll-animations.css">
+    <link rel="stylesheet" href="cupons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+        .carrinho-container {
+            min-height: calc(100vh - 80px - 300px); 
+            padding: 60px 0;
+        }
+        
+        .carrinho-vazio {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .carrinho-vazio i {
+            font-size: 4rem;
+            color: var(--text-tertiary);
+            margin-bottom: 20px;
+        }
+        
+        .carrinho-vazio h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .carrinho-vazio p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        
+        .carrinho-header {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr auto;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+        
+        .carrinho-item {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr auto;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+        }
+        
+        .carrinho-produto {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .carrinho-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #1a1a1a;
+            flex-shrink: 0;
+        }
+        
+        .carrinho-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carrinho-info h3 {
+            font-size: 1.1rem;
+            margin: 0 0 5px 0;
+            color: var(--text-primary);
+        }
+        
+        .carrinho-info p {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .carrinho-preco {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .carrinho-quantidade {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-quantidade {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-primary);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .btn-quantidade:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .quantidade-valor {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .carrinho-subtotal {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .btn-remover {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 5px;
+        }
+        
+        .btn-remover:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .carrinho-resumo {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .resumo-linha {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .resumo-linha:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .resumo-label {
+            color: var(--text-secondary);
+        }
+        
+        .resumo-valor {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .resumo-total {
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .resumo-total .resumo-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .resumo-total .resumo-valor {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        .carrinho-acoes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        
+        .btn-continuar {
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-continuar:hover {
+            background: rgba(230, 57, 70, 0.1);
+        }
+        
+        .btn-finalizar {
+            padding: 12px 25px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+        }
+        
+        .btn-finalizar:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .carrinho-header {
+                display: none;
+            }
+            
+            .carrinho-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 20px;
+                background: var(--bg-card);
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .carrinho-produto {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                padding-bottom: 15px;
+            }
+            
+            .carrinho-acoes {
+                flex-direction: column;
+            }
+            
+            .carrinho-preco, .carrinho-subtotal, .carrinho-quantidade {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 0;
+            }
+            
+            .carrinho-preco::before {
+                content: "Preço:";
+                color: var(--text-tertiary);
+            }
+            
+            .carrinho-subtotal::before {
+                content: "Subtotal:";
+                color: var(--text-tertiary);
+            }
+            
+            .carrinho-quantidade {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .carrinho-quantidade::before {
+                content: "Quantidade:";
+                color: var(--text-tertiary);
+            }
+            
+            .btn-remover {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+        }
+        
+        /* Estilos para o cupom no carrinho */
+        .cupom-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .cupom-container h3 {
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-size: 18px;
+        }
+        
+        .cupom-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        #cupom-input {
+            flex: 1;
+            padding: 12px 15px;
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        #cupom-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+        }
+        
+        .btn-aplicar-cupom {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-aplicar-cupom:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .cupom-mensagem {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .cupom-mensagem.erro {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff6b6b;
+            border-left: 3px solid #ff6b6b;
+        }
+        
+        .cupom-mensagem.sucesso {
+            background: rgba(0, 255, 0, 0.1);
+            color: #69db7c;
+            border-left: 3px solid #69db7c;
+        }
+        
+        .desconto-linha {
+            color: #69db7c !important;
+            font-weight: 600;
+        }
+        
+        .valor-desconto {
+            color: #69db7c !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><span>Ricijo</span>Cheats</h1>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i>Início</a>
+                <a href="index.html#produtos"><i class="fas fa-gamepad"></i>Produtos</a>
+                <a href="index.html#como-funciona"><i class="fas fa-question-circle"></i>Como Funciona</a>
+                <a href="index.html#faq"><i class="fas fa-info-circle"></i>FAQ</a>
+            </nav>
+            <div class="botoes">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="carrinho.html" class="btn-carrinho"><i class="fas fa-shopping-cart"></i> Carrinho <span class="carrinho-contador">0</span></a>
+                <a href="#" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="carrinho-container">
+        <div class="container">
+            <h2>Meu Carrinho</h2>
+            
+            <!-- Carrinho vazio (será mostrado via JavaScript quando não houver itens) -->
+            <div class="carrinho-vazio" style="display: none;">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>Seu carrinho está vazio</h2>
+                <p>Adicione produtos ao seu carrinho para continuar.</p>
+                <a href="index.html#produtos" class="btn-primary">Ver produtos</a>
+            </div>
+            
+            <!-- Carrinho com itens -->
+            <div class="carrinho-com-itens">
+                <!-- Cabeçalho do carrinho -->
+                <div class="carrinho-header">
+                    <div>Produto</div>
+                    <div>Preço</div>
+                    <div>Quantidade</div>
+                    <div>Subtotal</div>
+                    <div></div>
+                </div>
+                
+                <!-- Lista de itens do carrinho (será preenchida via JavaScript) -->
+                <div id="carrinho-itens">
+                    <!-- Exemplo de item (será gerado dinamicamente) -->
+                    <!-- 
+                    <div class="carrinho-item" data-id="1" data-plano="mensal">
+                        <div class="carrinho-produto">
+                            <div class="carrinho-img">
+                                <img src="img/produto1.jpg" alt="Hack PointBlank Brasil">
+                            </div>
+                            <div class="carrinho-info">
+                                <h3>Hack PointBlank Brasil</h3>
+                                <p>Versão: 30 dias</p>
+                            </div>
+                        </div>
+                        <div class="carrinho-preco">R$ 79,90</div>
+                        <div class="carrinho-quantidade">
+                            <button class="btn-quantidade btn-diminuir">-</button>
+                            <span class="quantidade-valor">1</span>
+                            <button class="btn-quantidade btn-aumentar">+</button>
+                        </div>
+                        <div class="carrinho-subtotal">R$ 79,90</div>
+                        <button class="btn-remover"><i class="fas fa-trash"></i></button>
+                    </div>
+                    -->
+                </div>
+                
+                <!-- Resumo do carrinho -->
+                <div class="carrinho-resumo">
+                    <div class="resumo-linha">
+                        <span class="resumo-label">Subtotal</span>
+                        <span class="resumo-valor subtotal-valor">R$ 0,00</span>
+                    </div>
+                    <!-- Div para desconto (será mostrado quando um cupom for aplicado) -->
+                    <div class="resumo-linha desconto-container" style="display: none;">
+                        <span class="resumo-label">Desconto</span>
+                        <span class="resumo-valor desconto-valor">- R$ 0,00</span>
+                    </div>
+                    <div class="resumo-linha resumo-total">
+                        <span class="resumo-label">Total</span>
+                        <div class="total-com-desconto">
+                            <span class="preco-original" style="display: none;">R$ 0,00</span>
+                            <span class="resumo-valor valor-total">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Área de cupom de desconto -->
+                <div id="cupom-container" class="cupom-container animate-on-scroll fade-in">
+                    <h3>Cupom de Desconto</h3>
+                    <div class="cupom-input-container">
+                        <input type="text" id="cupom-input" placeholder="Digite seu cupom">
+                        <button id="aplicar-cupom" class="btn-aplicar-cupom">Aplicar</button>
+                    </div>
+                    <div id="cupom-mensagem" class="cupom-mensagem"></div>
+                </div>
+                
+                <!-- Botões de ação -->
+                <div class="carrinho-acoes">
+                    <a href="index.html#produtos" class="btn-continuar">
+                        <i class="fas fa-arrow-left"></i> Continuar comprando
+                    </a>
+                    <button class="btn-finalizar" id="btn-finalizar">Finalizar compra</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Ricijo Cheats</h3>
+                    <p>Fornecemos os melhores cheats para os jogos mais populares do mercado, com preços acessíveis e suporte de qualidade.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="link-group">
+                        <h3>Links Rápidos</h3>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="index.html#produtos">Produtos</a></li>
+                            <li><a href="index.html#como-funciona">Como Funciona</a></li>
+                            <li><a href="index.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="link-group">
+                        <h3>Suporte</h3>
+                        <ul>
+                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Ricijo Cheats - 2023. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="scroll-animations.js"></script>
+    <script src="cupons.js"></script>
+    <script>
+        // Inicializar quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarCarrinho();
+            
+            // Adicionar evento ao botão de finalizar compra
+            const btnFinalizar = document.getElementById('btn-finalizar');
+            if (btnFinalizar) {
+                btnFinalizar.addEventListener('click', finalizarCompra);
+            }
+            
+            // Adicionar evento ao botão de aplicar cupom
+            const btnAplicarCupom = document.getElementById('aplicar-cupom');
+            if (btnAplicarCupom) {
+                btnAplicarCupom.addEventListener('click', function() {
+                    const codigoCupom = document.getElementById('cupom-input').value.trim();
+                    if (!codigoCupom) {
+                        document.getElementById('cupom-mensagem').textContent = 'Digite um código de cupom.';
+                        document.getElementById('cupom-mensagem').classList.add('erro');
+                        document.getElementById('cupom-mensagem').classList.remove('sucesso');
+                        return;
+                    }
+                    
+                    // Verificar cupom (usando a função do cupons.js)
+                    if (typeof verificarCupom === 'function') {
+                        const resultadoVerificacao = verificarCupom(codigoCupom);
+                        const cupomMensagem = document.getElementById('cupom-mensagem');
+                        
+                        if (resultadoVerificacao.valido) {
+                            // Obter valor total atual
+                            const subtotalElement = document.querySelector('.subtotal-valor');
+                            if (!subtotalElement) return;
+                            
+                            const subtotal = parseFloat(subtotalElement.textContent.replace('R$ ', '').replace(',', '.'));
+                            
+                            // Aplicar desconto (usando a função do cupons.js)
+                            if (typeof aplicarDesconto === 'function') {
+                                const resultadoDesconto = aplicarDesconto(subtotal, resultadoVerificacao);
+                                
+                                // Atualizar mensagem
+                                cupomMensagem.textContent = resultadoDesconto.mensagem;
+                                cupomMensagem.classList.remove('erro');
+                                cupomMensagem.classList.add('sucesso');
+                                
+                                // Atualizar valor total
+                                if (resultadoDesconto.desconto > 0) {
+                                    // Salvar cupom no localStorage
+                                    localStorage.setItem('cupomAplicado', JSON.stringify({
+                                        codigo: codigoCupom,
+                                        desconto: resultadoDesconto.desconto
+                                    }));
+                                    
+                                    // Atualizar resumo
+                                    atualizarResumo();
+                                }
+                            } else {
+                                // Fallback se a função aplicarDesconto não estiver disponível
+                                cupomMensagem.textContent = 'Erro ao aplicar o cupom. Tente novamente.';
+                                cupomMensagem.classList.add('erro');
+                                cupomMensagem.classList.remove('sucesso');
+                            }
+                        } else {
+                            cupomMensagem.textContent = resultadoVerificacao.mensagem;
+                            cupomMensagem.classList.add('erro');
+                            cupomMensagem.classList.remove('sucesso');
+                            
+                            // Remover cupom do localStorage
+                            localStorage.removeItem('cupomAplicado');
+                            atualizarResumo();
+                        }
+                    } else {
+                        // Fallback se a função verificarCupom não estiver disponível
+                        const cupomMensagem = document.getElementById('cupom-mensagem');
+                        cupomMensagem.textContent = 'Sistema de cupons indisponível no momento.';
+                        cupomMensagem.classList.add('erro');
+                    }
+                });
+            }
+        });
+        
+        // Função para carregar o carrinho do localStorage
+        function carregarCarrinho() {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            const carrinhoItens = document.getElementById('carrinho-itens');
+            const carrinhoVazio = document.querySelector('.carrinho-vazio');
+            const carrinhoComItens = document.querySelector('.carrinho-com-itens');
+            
+            carrinhoItens.innerHTML = '';
+            
+            if (carrinho.length === 0) {
+                carrinhoVazio.style.display = 'block';
+                carrinhoComItens.style.display = 'none';
+                return;
+            }
+            
+            carrinhoVazio.style.display = 'none';
+            carrinhoComItens.style.display = 'block';
+            
+            carrinho.forEach(item => {
+                const itemHTML = criarItemCarrinho(item);
+                carrinhoItens.appendChild(itemHTML);
+            });
+            
+            atualizarResumo();
+        }
+        
+        // Função para criar um item do carrinho
+        function criarItemCarrinho(item) {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'carrinho-item';
+            itemElement.setAttribute('data-id', item.id);
+            itemElement.setAttribute('data-plano', item.plano);
+            
+            const subtotal = (parseFloat(item.preco) * item.quantidade).toFixed(2);
+            
+            itemElement.innerHTML = `
+                <div class="carrinho-produto">
+                    <div class="carrinho-img">
+                        <img src="${item.imgSrc}" alt="${item.nome}">
+                    </div>
+                    <div class="carrinho-info">
+                        <h3>${item.nome}</h3>
+                        <p>Versão: ${item.periodo}</p>
+                    </div>
+                </div>
+                <div class="carrinho-preco">R$ ${parseFloat(item.preco).toFixed(2).replace('.', ',')}</div>
+                <div class="carrinho-quantidade">
+                    <button class="btn-quantidade btn-diminuir">-</button>
+                    <span class="quantidade-valor">${item.quantidade}</span>
+                    <button class="btn-quantidade btn-aumentar">+</button>
+                </div>
+                <div class="carrinho-subtotal">R$ ${subtotal.replace('.', ',')}</div>
+                <button class="btn-remover"><i class="fas fa-trash"></i></button>
+            `;
+            
+            const btnDiminuir = itemElement.querySelector('.btn-diminuir');
+            const btnAumentar = itemElement.querySelector('.btn-aumentar');
+            const btnRemover = itemElement.querySelector('.btn-remover');
+            
+            btnDiminuir.addEventListener('click', () => {
+                alterarQuantidade(item.id, item.plano, -1);
+            });
+            
+            btnAumentar.addEventListener('click', () => {
+                alterarQuantidade(item.id, item.plano, 1);
+            });
+            
+            btnRemover.addEventListener('click', () => {
+                removerItem(item.id, item.plano);
+            });
+            
+            return itemElement;
+        }
+        
+        // Função para alterar a quantidade de um item no carrinho
+        function alterarQuantidade(id, plano, delta) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            
+            const index = carrinho.findIndex(item => item.id === id && item.plano === plano);
+            
+            if (index !== -1) {
+                carrinho[index].quantidade += delta;
+                
+                if (carrinho[index].quantidade <= 0) {
+                    carrinho.splice(index, 1);
+                }
+                
+                localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                
+                carregarCarrinho();
+                
+                atualizarContadorCarrinho();
+            }
+        }
+        
+        // Função para remover um item do carrinho
+        function removerItem(id, plano) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            
+            const index = carrinho.findIndex(item => item.id === id && item.plano === plano);
+            
+            if (index !== -1) {
+                carrinho.splice(index, 1);
+                
+                localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                
+                carregarCarrinho();
+                
+                atualizarContadorCarrinho();
+            }
+        }
+        
+        // Função para atualizar o resumo do carrinho
+        function atualizarResumo() {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            
+            let subtotal = 0;
+            
+            // Calcular subtotal
+            carrinho.forEach(item => {
+                subtotal += parseFloat(item.preco) * item.quantidade;
+            });
+            
+            // Verificar se há cupom aplicado
+            const cupomAplicado = JSON.parse(localStorage.getItem('cupomAplicado'));
+            let valorDesconto = 0;
+            
+            // Atualizar valores no DOM com verificações de null
+            const subtotalElement = document.querySelector('.subtotal-valor');
+            if (subtotalElement) {
+                subtotalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            }
+            
+            // Mostrar ou esconder o container de desconto
+            const descontoContainer = document.querySelector('.desconto-container');
+            const precoOriginal = document.querySelector('.preco-original');
+            const valorTotal = document.querySelector('.valor-total');
+            
+            if (cupomAplicado) {
+                valorDesconto = parseFloat(cupomAplicado.desconto);
+                
+                // Mostrar e atualizar o container de desconto
+                if (descontoContainer) {
+                    descontoContainer.style.display = 'flex';
+                    const descontoValor = descontoContainer.querySelector('.desconto-valor');
+                    if (descontoValor) {
+                        descontoValor.textContent = `- R$ ${valorDesconto.toFixed(2).replace('.', ',')}`;
+                    }
+                }
+                
+                // Mostrar e atualizar o preço original
+                if (precoOriginal) {
+                    precoOriginal.style.display = 'block';
+                    precoOriginal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+                }
+                
+                // Adicionar classe de destaque para o novo preço
+                if (valorTotal) {
+                    valorTotal.classList.add('desconto-aplicado');
+                    valorTotal.classList.add('preco-destacado');
+                    // Remover a classe após a animação
+                    setTimeout(() => {
+                        valorTotal.classList.remove('preco-destacado');
+                    }, 600);
+                }
+                
+                // Atualizar mensagem de cupom
+                const cupomMensagem = document.getElementById('cupom-mensagem');
+                if (cupomMensagem) {
+                    cupomMensagem.textContent = `Cupom ${cupomAplicado.codigo} aplicado com sucesso! Você economizou R$ ${valorDesconto.toFixed(2).replace('.', ',')}`;
+                    cupomMensagem.classList.add('sucesso');
+                    cupomMensagem.classList.remove('erro');
+                }
+                
+                // Preencher campo de cupom
+                const cupomInput = document.getElementById('cupom-input');
+                if (cupomInput) {
+                    cupomInput.value = cupomAplicado.codigo;
+                }
+            } else {
+                // Esconder elementos relacionados ao desconto
+                if (descontoContainer) {
+                    descontoContainer.style.display = 'none';
+                }
+                
+                if (precoOriginal) {
+                    precoOriginal.style.display = 'none';
+                }
+                
+                if (valorTotal) {
+                    valorTotal.classList.remove('desconto-aplicado');
+                }
+            }
+            
+            // Calcular total com desconto
+            const total = Math.max(0, subtotal - valorDesconto);
+            
+            // Atualizar o valor total
+            if (valorTotal) {
+                valorTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            }
+            
+            // Atualizar contador do carrinho
+            const contadorCarrinho = document.querySelector('.carrinho-contador');
+            if (contadorCarrinho) {
+                contadorCarrinho.textContent = carrinho.reduce((total, item) => total + item.quantidade, 0);
+            }
+        }
+        
+        // Função para finalizar a compra
+        function finalizarCompra() {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            
+            if (carrinho.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            
+
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+            
+            if (!usuarioLogado) {
+                alert('Você precisa estar logado para finalizar a compra.');
+                window.location.href = 'login.html?redirect=carrinho';
+                return;
+            }
+            
+            // Redirecionar para a página de checkout
+            window.location.href = 'checkout.html';
+        }
+    </script>
+</body>
+</html> 
