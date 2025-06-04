@@ -468,7 +468,7 @@ function carregarProdutosUsuario() {
                 </div>
                 <div class="product-actions">
                     ${isActive ? 
-                        `<a href="#" class="btn-download" data-id="${produto.id}"><i class="fas fa-download"></i> Download</a>` : 
+                        `<a href="downloads.html" class="btn-download" data-id="${produto.id}"><i class="fas fa-download"></i> Download</a>` : 
                         `<a href="#" class="btn-renew" data-id="${produto.id}"><i class="fas fa-sync"></i> Renovar</a>`
                     }
                     <a href="#" class="btn-details" data-id="${produto.id}">Detalhes</a>
